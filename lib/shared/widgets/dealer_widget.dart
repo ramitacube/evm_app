@@ -22,6 +22,7 @@ Widget buildDealer(GetCompaniesCategories category, BuildContext context,
                         )));
           },
           child: Container(
+            padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(
@@ -35,8 +36,12 @@ Widget buildDealer(GetCompaniesCategories category, BuildContext context,
             child: category.categoryIcon != null
                 ? Image.network(
                     category.categoryIcon,
+                    width: 3,
                   )
-                : Image.asset("assets/images/icons/caricon.png"),
+                : Image.asset(
+                    "assets/images/icons/caricon.png",
+                    width: 5,
+                  ),
           ),
         ),
         SizedBox(

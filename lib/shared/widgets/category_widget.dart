@@ -8,6 +8,7 @@ Widget categoryWidget(int passingIndex, int currentIndex,
     child: Column(
       children: [
         Container(
+          padding: EdgeInsets.all(15),
           decoration: BoxDecoration(
             color: passingIndex != null
                 ? passingIndex == currentIndex

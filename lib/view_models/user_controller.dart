@@ -165,6 +165,7 @@ class UserController extends BaseController {
       return false;
     }
   }
+
   Future<bool> sendOtp({String phone, String type}) async {
     isLoading = true;
     GraphQLClient client = graphqlClass.clientToQuery();
@@ -190,19 +191,20 @@ class UserController extends BaseController {
       print(e);
     }
   }
+
   Future<bool> logInOtp({String userMail, int otp}) async {
     isLoading = true;
     GraphQLClient client = graphqlClass.clientToQuery();
     try {
-      QueryResult result = await client.mutate(
-          MutationOptions(documentNode: gql(MutationClass().loginOtp), variables: {
+      QueryResult result = await client.mutate(MutationOptions(
+          documentNode: gql(MutationClass().loginOtp),
+          variables: {
             "input": {
               'username': userMail, //ananthu123@gmail.com,
               'otp': password //12345678
             }
           }));
 
-      print("Data===${result.data["otp``"]}");
       String responseDetails = getPrettyJSONString(result.data.loginOtp);
       var response = json.decode(responseDetails);
       // customerData = CustomerData.fromJson(response);
@@ -216,6 +218,7 @@ class UserController extends BaseController {
       return false;
     }
   }
+
   logout() {
     customerData = null;
     sharedPreferenceHelper.removeAll();

@@ -158,7 +158,7 @@ class HomeView extends GetView<HomeController> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Categories",
+                "Select Your Prefered Vehicle Type",
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ],
@@ -207,10 +207,7 @@ class HomeView extends GetView<HomeController> {
             children: [
               Text(
                 "Offers",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: Theme.of(context).textTheme.bodyText1,
               ),
             ],
           ),

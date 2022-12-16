@@ -9,9 +9,8 @@ class OtpLoginView extends GetView<UserController> {
   TextEditingController phoneController = new TextEditingController();
   TextEditingController otpController = new TextEditingController();
   dynamic argumentData = Get.arguments;
-  OtpLoginView(){
+  OtpLoginView() {
     this.phoneController.text = Get.arguments[0];
-
   }
   // final data = Get.arguments;
 
@@ -89,7 +88,7 @@ class OtpLoginView extends GetView<UserController> {
           SizedBox(height: 13),
           buildOTPForm(context),
           // buildMobile(context),
-          buildLoginAction(),
+          buildLoginAction(context),
           buildRegisterAction(context),
         ],
       ),
@@ -198,17 +197,22 @@ class OtpLoginView extends GetView<UserController> {
     );
   }
 
-  Widget buildLoginAction() {
+  Widget buildLoginAction(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        print(phoneController);
-        print(controller.pinPutController);
-          var login = controller.logInOtp(
-              userMail: controller.userName, otp: int.parse(controller.otp));
-          print(login);
-          if (login == true) {
-        Get.toNamed(Routes.HOME);
-          }
+        // print(phoneController);
+        // print(otpController);
+        // // print(controller.pinPutController);
+        // print("user ${controller}");
+        // print("otp ${controller.otp}");
+        // var login = controller.logInOtp(
+        //     userMail: phoneController.text, otp: int.parse(otpController.text));
+
+        // if (login == true) {
+        //   Get.toNamed(Routes.HOME);
+        // }
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MainView()));
       },
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 27),

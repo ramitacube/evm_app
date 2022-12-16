@@ -264,7 +264,7 @@ class SearchView extends GetView<SearchController> {
             child: Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: Text(
-                'Select Rental Category',
+                'Select Your Prefered Vehicle Type',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
@@ -932,9 +932,9 @@ class SearchView extends GetView<SearchController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Most Moving Hatchback",
+                  "Select Our Most Moving Hatchback",
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -992,9 +992,9 @@ class SearchView extends GetView<SearchController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Most Moving Sedan",
+                  "Select Our Most Moving Sedan",
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -1052,9 +1052,9 @@ class SearchView extends GetView<SearchController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Most Moving SUV",
+                  "Select Our Most Moving SUV",
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
                 ),

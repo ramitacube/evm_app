@@ -80,7 +80,6 @@ class HomeController extends GetxController {
           documentNode: gql(QueryClass().queryRentalCategory),
         ),
       );
-      print("Data===${result.data}");
       String responseDetails = getPrettyJSONString(result.data);
       var response = json.decode(responseDetails);
       rentalCategory = CategoryModel.fromJson(response).getCompaniesCategories;
@@ -104,7 +103,7 @@ class HomeController extends GetxController {
               'headers': {'Authorization': 'Bearer $strapiToken'}
             }),
       );
-      print("Data===${result.data}");
+      print("Data=ass==${result.data}");
       String responseDetails = getPrettyJSONString(result.data);
       var response = json.decode(responseDetails);
       offerData = OfferData.fromJson(response).offer.media;

@@ -75,7 +75,7 @@ class RentalView extends GetView<RentalController> {
                                         //   ),
                                         // )
                                         : buildLoading(context)
-                                    : buildCompleteBody(),
+                                    : buildCompleteBody(context),
                               ),
                             ],
                           ),
@@ -232,7 +232,7 @@ class RentalView extends GetView<RentalController> {
                       ),
                       child: Align(
                         alignment: Alignment.center,
-                        child: Text("Active "),
+                        child: Text("Active Booking"),
                       ),
                     ),
                   ),
@@ -248,7 +248,7 @@ class RentalView extends GetView<RentalController> {
                       ),
                       child: Align(
                         alignment: Alignment.center,
-                        child: Text("Completed"),
+                        child: Text("Completed Trip"),
                       ),
                     ),
                   ),
@@ -280,20 +280,48 @@ class RentalView extends GetView<RentalController> {
     );
   }
 
-  Widget buildCompleteBody() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(30),
-          bottomRight: Radius.circular(30),
-        ),
-      ),
-      child: Column(
-        children: [],
-      ),
-    );
+  Widget buildCompleteBody(context) {
+    var noComplete = true;
+    return noComplete
+        ? Container(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 200,
+                decoration: BoxDecoration(
+                  border: Border.all(width: 0.5, color: Colors.grey),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "No Completed Trip",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
+                          color: Colors.grey),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
+        : Container(
+            padding: EdgeInsets.symmetric(vertical: 16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30),
+              ),
+            ),
+            child: Column(
+              children: [],
+            ),
+          );
   }
 
   Widget buildBookingWidget(

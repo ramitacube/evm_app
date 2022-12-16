@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
               textTheme: TextTheme(
                 bodyText1: GoogleFonts.lato(
                     textStyle: TextStyle(
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.w400,
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w700,
                 )),
                 subtitle1: GoogleFonts.lato(
                     textStyle: TextStyle(
