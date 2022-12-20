@@ -103,7 +103,7 @@ class SearchView extends GetView<SearchController> {
                                       padding: const EdgeInsets.only(
                                           left: 20.0, top: 20.0),
                                       child: Text(
-                                        'Select Travel Period',
+                                        'Select Travel Period You Want To Ride',
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w700,
@@ -120,7 +120,7 @@ class SearchView extends GetView<SearchController> {
                                       padding: const EdgeInsets.only(
                                           left: 20.0, top: 20.0),
                                       child: Text(
-                                        'Select Pickup/Drop Hub',
+                                        'Select Your Nearest Pickup/Drop Hub',
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w700,
@@ -886,35 +886,35 @@ class SearchView extends GetView<SearchController> {
                 "Category Id :${controller.categoryId}\n"
                 "Company ID:${controller.companyId}");
 
-            if (controller.fromDate != null &&
-                controller.pickupHubId != null &&
-                controller.categoryId != null &&
-                controller.bundleId != null) {
-              // await controller.getSearch();
-              Get.toNamed(Routes.PRODUCTSEARCH, arguments: [
-                controller.searchData,
-                controller.fromDate,
-                controller.toDate,
-                controller.pickupHubId,
-                controller.dropHubId,
-                controller.categoryId,
-                controller.bundleId,
-                controller.pickupCity,
-                controller.dropCity,
-                controller.bundleName
-              ]);
+            // if (controller.fromDate != null &&
+            //     controller.pickupHubId != null &&
+            //     controller.categoryId != null &&
+            //     controller.bundleId != null) {
+            //   // await controller.getSearch();
+            //   Get.toNamed(Routes.PRODUCTSEARCH, arguments: [
+            //     controller.searchData,
+            //     controller.fromDate,
+            //     controller.toDate,
+            //     controller.pickupHubId,
+            //     controller.dropHubId,
+            //     controller.categoryId,
+            //     controller.bundleId,
+            //     controller.pickupCity,
+            //     controller.dropCity,
+            //     controller.bundleName
+            //   ]);
 
-              ///   Product page calling
-            } else {
-              Get.snackbar(
-                "Missing !",
-                "Some required fields are missing.",
-                colorText: Colors.white,
-                icon: Icon(Icons.assignment_late_outlined, color: Colors.white),
-                snackPosition: SnackPosition.BOTTOM,
-                backgroundColor: kPrimaryColor,
-              );
-            }
+            ///   Product page calling
+            // } else {
+            //   Get.snackbar(
+            //     "Missing !",
+            //     "Some required fields are missing.",
+            //     colorText: Colors.white,
+            //     icon: Icon(Icons.assignment_late_outlined, color: Colors.white),
+            //     snackPosition: SnackPosition.BOTTOM,
+            //     backgroundColor: kPrimaryColor,
+            //   );
+            // }
           },
         ),
       ),
@@ -940,7 +940,7 @@ class SearchView extends GetView<SearchController> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(Routes.AVAILABLE_CARS, arguments: "Hatchback");
+                    // Get.toNamed(Routes.AVAILABLE_CARS, arguments: "Hatchback");
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(right: 20.0),
@@ -1027,7 +1027,7 @@ class SearchView extends GetView<SearchController> {
                 children: controller.cars
                     .map((car) => GestureDetector(
                         onTap: () {
-                          Get.toNamed(Routes.BOOK_CAR, arguments: car);
+                          // Get.toNamed(Routes.BOOK_CAR, arguments: car);
                         },
                         child: buildCar(car, controller.cars.indexOf(car))))
                     .toList()
@@ -1060,7 +1060,7 @@ class SearchView extends GetView<SearchController> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(Routes.AVAILABLE_CARS, arguments: "SUV");
+                    // Get.toNamed(Routes.AVAILABLE_CARS, arguments: "SUV");
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(right: 20.0),
@@ -1119,7 +1119,7 @@ class SearchView extends GetView<SearchController> {
             child: Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child: Text(
-                'Select a Type',
+                'Select a Type Of Your Prefered Vehicle',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
@@ -1206,7 +1206,7 @@ class SearchView extends GetView<SearchController> {
           child: Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: Text(
-              'Select Bundle Package',
+              'Select KM Required As Per The Bundle Package',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
@@ -1230,27 +1230,33 @@ class SearchView extends GetView<SearchController> {
                       data: ThemeData(brightness: Brightness.dark),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: FilterChip(
-                          backgroundColor: Colors.grey.shade300,
-                          label: Text(
-                            controller.packageBundle[index].bundleName,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border:
+                                  Border.all(width: 1, color: kPrimaryColor)),
+                          child: FilterChip(
+                            backgroundColor: Colors.grey.shade300,
+                            label: Text(
+                              controller.packageBundle[index].bundleName,
+                            ),
+                            labelStyle: TextStyle(
+                                color: controller.hubIndex == index
+                                    ? Colors.white
+                                    : Colors.grey.shade700),
+                            selected: controller.hubIndex == index ??
+                                controller.selectRent,
+                            selectedColor: kPrimaryColor,
+                            onSelected: (bool val) {
+                              controller.bundleId =
+                                  controller.packageBundle[index].id;
+                              controller.bundleName =
+                                  controller.packageBundle[index].bundleName;
+                              controller.selectRent = val;
+                              controller.hubIndex = index;
+                              controller.update();
+                            },
                           ),
-                          labelStyle: TextStyle(
-                              color: controller.hubIndex == index
-                                  ? Colors.white
-                                  : Colors.grey.shade700),
-                          selected: controller.hubIndex == index ??
-                              controller.selectRent,
-                          selectedColor: kPrimaryColor,
-                          onSelected: (bool val) {
-                            controller.bundleId =
-                                controller.packageBundle[index].id;
-                            controller.bundleName =
-                                controller.packageBundle[index].bundleName;
-                            controller.selectRent = val;
-                            controller.hubIndex = index;
-                            controller.update();
-                          },
                         ),
                       ),
                     );

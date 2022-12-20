@@ -21,7 +21,7 @@ class ProfileView extends GetView<ProfileController> {
           // WidgetsBinding.instance
           //     .addPostFrameCallback((_) => controller.model.getUser());
           controller.customerData = controller.userController.customerData;
-          print(controller.customerData.login.user.name);
+          // print(controller.customerData.login.user.name);
         },
         builder: (_) => Stack(
           children: [
@@ -162,38 +162,33 @@ class ProfileView extends GetView<ProfileController> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               buildButton(context),
-              buildItem(
-                  icon: LineIcons.user,
-                  name: 'Name',
-                  data: controller.customerData.login.user.name),
+              buildItem(icon: LineIcons.user, name: 'Name', data: "Afeef"),
               Divider(),
               buildItem(
                 icon: LineIcons.envelope,
                 name: "Email",
-                data: controller.customerData.login.user.email,
+                data: "afeef@gmail.com",
               ),
               Divider(),
               buildItem(
                 icon: LineIcons.phone,
                 name: "Mobile",
-                data: controller.customerData.login.user.phone,
+                data: "9745276312",
               ),
               Divider(),
               buildItem(
-                  icon: LineIcons.genderless,
-                  name: 'Gender',
-                  data: controller.customerData.login.user.gender),
+                  icon: LineIcons.genderless, name: 'Gender', data: "Male"),
               Divider(),
               buildItem(
                 icon: LineIcons.calendar,
                 name: "Date of Birth",
-                data: controller.customerData.login.user.dob,
+                data: "02-01-1998",
               ),
               Divider(),
               buildItem(
                 icon: LineIcons.calendar,
                 name: "address",
-                data: controller.customerData.login.user.address,
+                data: "Kozhikode",
               ),
             ],
           ),

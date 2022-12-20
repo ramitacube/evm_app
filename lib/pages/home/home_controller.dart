@@ -83,7 +83,7 @@ class HomeController extends GetxController {
       String responseDetails = getPrettyJSONString(result.data);
       var response = json.decode(responseDetails);
       rentalCategory = CategoryModel.fromJson(response).getCompaniesCategories;
-      print("result length==${rentalCategory.length}");
+      print("result sss length==$rentalCategory");
       isLoading = false;
       update();
     } on NetworkException catch (e) {

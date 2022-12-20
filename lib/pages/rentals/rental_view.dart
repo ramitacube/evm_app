@@ -53,29 +53,31 @@ class RentalView extends GetView<RentalController> {
                               buildBody(context),
                               GetBuilder<RentalController>(
                                 init: RentalController(),
-                                builder: (_) => controller.tabIndex == 0
-                                    ? !controller.isLoading &&
-                                            controller.rentalData.rental != null
-                                        ? controller.rentalData.rental != null
-                                            ? buildActiveBody()
-                                            : Container(
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 100.0),
-                                                  child: Text("No items found"),
-                                                ),
-                                              )
-                                        // buildActiveBody()
-                                        //       : controller.rentalData.rental!=null
-                                        //         ? Container(
-                                        //   child: Padding(
-                                        //     padding: const EdgeInsets.only(top: 100.0),
-                                        //     child: Text("No items found"),
-                                        //   ),
-                                        // )
-                                        : buildLoading(context)
-                                    : buildCompleteBody(context),
+                                builder: (_) => buildActiveBody(),
+                                // RAMIT COMMENT
+                                // builder: (_) => controller.tabIndex == 0
+                                //     ? !controller.isLoading &&
+                                //             controller.rentalData.rental != null
+                                //         ? controller.rentalData.rental != null
+                                //             ? buildActiveBody()
+                                //             : Container(
+                                //                 child: Padding(
+                                //                   padding:
+                                //                       const EdgeInsets.only(
+                                //                           top: 100.0),
+                                //                   child: Text("No items found"),
+                                //                 ),
+                                //               )
+                                //         // buildActiveBody()
+                                //         //       : controller.rentalData.rental!=null
+                                //         //         ? Container(
+                                //         //   child: Padding(
+                                //         //     padding: const EdgeInsets.only(top: 100.0),
+                                //         //     child: Text("No items found"),
+                                //         //   ),
+                                //         // )
+                                //         : buildLoading(context)
+                                //     : buildCompleteBody(context),
                               ),
                             ],
                           ),
@@ -263,18 +265,22 @@ class RentalView extends GetView<RentalController> {
     return Column(
       children: [
         ListView.builder(
-            itemCount: controller.rentalData.rental.length,
+            itemCount: 1,
+            // itemCount: controller.rentalData.rental.length,
             physics: BouncingScrollPhysics(),
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
               // controller.update();
-              return buildBookingWidget(
-                  imageUrl:
-                      'https://www.evmwheels.com/evm_wheels_backend/assets/images/vehicle_variant/redigo.jpeg',
-                  name: controller.rentalData.rental[index].products.name,
-                  rentals: controller.rentalData.rental[index],
-                  context: context);
+              return buildBookingWidget(context
+                  // imageUrl:
+                  //     'https://www.evmwheels.com/evm_wheels_backend/assets/images/vehicle_variant/redigo.jpeg',
+                  // name: "controller.rentalData.rental[index].products.name",
+                  // rentals: controller.rentalData.rental[index],
+                  // // rentals: controller.rentalData.rental[index],
+                  // context: context
+                  );
+              // return Text("No Active Booking");
             }),
       ],
     );
@@ -324,8 +330,9 @@ class RentalView extends GetView<RentalController> {
           );
   }
 
-  Widget buildBookingWidget(
-      {String name, String imageUrl, Rentals rentals, BuildContext context}) {
+  Widget buildBookingWidget(BuildContext context
+      // {String name, String imageUrl, Rentals rentals, BuildContext context}) {
+      ) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -345,29 +352,30 @@ class RentalView extends GetView<RentalController> {
                 child: Row(
                   children: [
                     Container(
-                      padding: EdgeInsets.only(left: 0, right: 10),
+                      padding: EdgeInsets.only(left: 0, right: 8),
                       // color: Colors.blue,
                       child: Image.network(
-                        '$imageUrl',
+                        // '$imageUrl',
+                        'https://evm-backend.s3.ap-south-1.amazonaws.com/product/1641799872558WagonR%28MT%29.png',
                         height: 150,
                         width: 150,
                         fit: BoxFit.scaleDown,
                       ),
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
+                    // SizedBox(
+                    //   width: 10,
+                    // ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.4,
+                          width: MediaQuery.of(context).size.width * 0.3,
                           child: Text(
-                            "$name",
+                            "Maruti Suzuki Wagon R (MT)",
                             overflow: TextOverflow.fade,
                             style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 20),
+                                fontWeight: FontWeight.w700, fontSize: 15),
                           ),
                         ),
                         Container(
@@ -402,11 +410,11 @@ class RentalView extends GetView<RentalController> {
                                       "assets/images/icons/seat.png",
                                       fit: BoxFit.fill,
                                     )),
-                                Text(
-                                    rentals.products.productAttrs.length > 1
-                                        ? rentals.products.productAttrs[1]
-                                            .headValue.name
-                                        : "null",
+                                Text("5 seater",
+                                    // rentals.products.productAttrs.length > 1
+                                    //     ? rentals.products.productAttrs[1]
+                                    //         .headValue.name
+                                    //     : "null",
                                     style: TextStyle(fontSize: 10)),
                               ],
                             ),
@@ -420,18 +428,18 @@ class RentalView extends GetView<RentalController> {
                                       "assets/images/icons/gearbox.png",
                                       fit: BoxFit.fill,
                                     )),
-                                Text(
-                                    rentals.products.productAttrs.length == 4
-                                        ? rentals.products.productAttrs.length >
-                                                3
-                                            ? rentals.products.productAttrs[3]
-                                                .headValue.name
-                                            : "null"
-                                        : rentals.products.productAttrs.length >
-                                                2
-                                            ? rentals.products.productAttrs[2]
-                                                .headValue.name
-                                            : "null",
+                                Text("Manual",
+                                    // rentals.products.productAttrs.length == 4
+                                    //     ? rentals.products.productAttrs.length >
+                                    //             3
+                                    //         ? rentals.products.productAttrs[3]
+                                    //             .headValue.name
+                                    //         : "null"
+                                    //     : rentals.products.productAttrs.length >
+                                    //             2
+                                    //         ? rentals.products.productAttrs[2]
+                                    //             .headValue.name
+                                    //         : "null",
                                     style: TextStyle(fontSize: 10)),
                               ],
                             ),
@@ -446,10 +454,11 @@ class RentalView extends GetView<RentalController> {
                                       fit: BoxFit.fill,
                                     )),
                                 Text(
-                                  rentals.products.productAttrs.isNotEmpty
-                                      ? rentals.products.productAttrs[0]
-                                          .headValue.name
-                                      : "null",
+                                  "Petrol",
+                                  // rentals.products.productAttrs.isNotEmpty
+                                  //     ? rentals.products.productAttrs[0]
+                                  //         .headValue.name
+                                  //     : "null",
                                   style: TextStyle(fontSize: 10),
                                 ),
                               ],
@@ -461,7 +470,7 @@ class RentalView extends GetView<RentalController> {
                   ],
                 ),
               ),
-              SizedBox(height: 17),
+              // SizedBox(height: 17),
               SizedBox(
                 height: 14,
               ),
@@ -472,20 +481,22 @@ class RentalView extends GetView<RentalController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        rentals.rentalDetails != null
-                            ? rentals
-                                .rentalDetails.pickupLocationId.locationName
-                            : "null",
+                        "Kochi",
+                        // rentals.rentalDetails != null
+                        //     ? rentals
+                        //         .rentalDetails.pickupLocationId.locationName
+                        //     : "null",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 22),
+                            fontWeight: FontWeight.bold, fontSize: 15),
                       ),
                       Text(
-                        rentals.rentalDetails != null
-                            ? rentals
-                                .rentalDetails.pickupLocationId.locationName
-                            : "null",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 12),
+                        "Maradu/EVM Volkswagon",
+                        // rentals.rentalDetails != null
+                        //     ? rentals
+                        //         .rentalDetails.pickupLocationId.locationName
+                        //     : "null",
+                        style:
+                            TextStyle(fontWeight: FontWeight.bold, fontSize: 8),
                       ),
                       SizedBox(height: 5),
                       Row(
@@ -499,9 +510,10 @@ class RentalView extends GetView<RentalController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                rentals.rentalDetails != null
-                                    ? rentals.rentalDetails.pickupDate
-                                    : "null",
+                                "12-12-2022",
+                                // rentals.rentalDetails != null
+                                //     ? rentals.rentalDetails.pickupDate
+                                //     : "null",
                                 style: TextStyle(
                                     color: Colors.green, fontSize: 10),
                               ),
@@ -524,18 +536,20 @@ class RentalView extends GetView<RentalController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        rentals.rentalDetails != null
-                            ? rentals.rentalDetails.dropLocationId.locationName
-                            : "null",
+                        "Kochi",
+                        // rentals.rentalDetails != null
+                        //     ? rentals.rentalDetails.dropLocationId.locationName
+                        //     : "null",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 22),
+                            fontWeight: FontWeight.bold, fontSize: 15),
                       ),
                       Text(
-                        rentals.rentalDetails != null
-                            ? rentals.rentalDetails.dropLocationId.locationName
-                            : "null",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 12),
+                        "Maradu/EVM Volkswagon",
+                        // rentals.rentalDetails != null
+                        //     ? rentals.rentalDetails.dropLocationId.locationName
+                        //     : "null",
+                        style:
+                            TextStyle(fontWeight: FontWeight.bold, fontSize: 8),
                       ),
                       SizedBox(height: 5),
                       Row(
@@ -549,9 +563,10 @@ class RentalView extends GetView<RentalController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                rentals.rentalDetails != null
-                                    ? rentals.rentalDetails.dropDate
-                                    : "null",
+                                "13-12-2022",
+                                // rentals.rentalDetails != null
+                                //     ? rentals.rentalDetails.dropDate
+                                //     : "null",
                                 style:
                                     TextStyle(color: Colors.red, fontSize: 10),
                               ),
@@ -599,13 +614,14 @@ class RentalView extends GetView<RentalController> {
                                   ),
                                 ),
                                 Text(
-                                  rentals?.rentalDetails?.rentalDetailRates !=
-                                          null
-                                      ? "      INR " +
-                                          rentals.rentalDetails
-                                              .rentalDetailRates.subTotal
-                                              .toString()
-                                      : "null",
+                                  "₹ 5426",
+                                  // rentals?.rentalDetails?.rentalDetailRates !=
+                                  //         null
+                                  //     ? "      INR " +
+                                  //         rentals.rentalDetails
+                                  //             .rentalDetailRates.subTotal
+                                  //             .toString()
+                                  //     : "null",
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.white,

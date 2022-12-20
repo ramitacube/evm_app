@@ -36,7 +36,7 @@ class AvatarWidget extends StatelessWidget {
               child: CircleAvatar(
                 maxRadius: 30,
                 backgroundColor: kPrimaryColor,
-                //backgroundImage: AssetImage(photoURL),
+                // backgroundImage: AssetImage(photoURL),
               ),
             ),
           ),

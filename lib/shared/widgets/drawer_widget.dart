@@ -29,8 +29,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     super.initState();
 
     Get.find<UserController>().getUser();
-
-    getUser();
+    // RAMIT COMMENT
+    // getUser();
   }
 
   Future<void> getUser() async {
@@ -87,8 +87,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                               .025,
                                           fontFamily: "Poppins",
                                           fontWeight: FontWeight.w600),
-                                      text: userController.customerData.login
-                                          .user.name), //"Ratheesh Vjayan"
+                                      text: "Afeef"
+                                      // text: userController.customerData.login
+                                      //     .user.name
+                                      ), //"Ratheesh Vjayan"
                                 ),
                               ),
                               Text(
